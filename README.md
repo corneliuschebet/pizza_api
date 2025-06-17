@@ -59,16 +59,15 @@ CREATE USER pizza_user WITH PASSWORD 'your_password';
 GRANT ALL PRIVILEGES ON DATABASE pizza_api_db TO pizza_user;
 \q
 Replace pizza_user and 'your_password' with your actual PostgreSQL username and password.
-
 b) Update your config.py with your database URI
 SQLALCHEMY_DATABASE_URI = 'postgresql://pizza_user:your_password@localhost:5432/pizza_api_db'
 (Use environment variables if preferred for security.)
 c) Run database migrations
 flask db upgrade
-## 4. Seed the database with initial data
+### 4. Seed the database with initial data
 python -m server.seed
-## 5. Run the Flask server
-flask run
+### 5. Run the Flask server
+python -m flask --app server.app run
 ## API Endpoints Overview
 Restaurants
 GET /restaurants - List all restaurants
@@ -91,7 +90,7 @@ Copy code
   "pizza_id": 2,
   "price": 12
 }
- Testing
+## Testing
 Use the included Postman collection challenge-1-pizzas.postman_collection.json in the server/ folder to test the API endpoints.
 
 ## Tech Stack
