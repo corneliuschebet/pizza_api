@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from server.app import app, db
+from server.app import create_app, db
 from server.models.restaurant import Restaurant
 from server.models.pizza import Pizza
 from server.models.restaurant_pizza import RestaurantPizza
@@ -8,6 +8,8 @@ from server.models.restaurant_pizza import RestaurantPizza
 def seed_data():
     """Seed the database with initial data"""
     
+    app = create_app()
+
     with app.app_context():
         # Clear existing data
         print("Clearing existing data...")
