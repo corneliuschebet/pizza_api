@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 
-import sys
-import os
-
-# Add the server directory to the Python path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-from app import app, db
-from models.restaurant import Restaurant
-from models.pizza import Pizza
-from models.restaurant_pizza import RestaurantPizza
+from server.app import app, db
+from server.models.restaurant import Restaurant
+from server.models.pizza import Pizza
+from server.models.restaurant_pizza import RestaurantPizza
 
 def seed_data():
     """Seed the database with initial data"""

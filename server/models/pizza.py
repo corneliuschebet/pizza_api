@@ -1,36 +1,38 @@
-from database import db
+from server.database import db
 from sqlalchemy.orm import validates
 
 class Pizza(db.Model):
     __tablename__ = 'pizzas'
-    
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     ingredients = db.Column(db.String(500), nullable=False)
-    
-    # Relationships
-    restaurant_pizzas = db.relationship('RestaurantPizza', 
-                                      backref='pizza')
-    
+
+    # One-to-many: Pizza → RestaurantPizzas
+    restaurant_pizzas = db.relationship(
+        'RestaurantPizza',
+        back_populates='pizza',
+        cascade='all, delete-orphan'
+    )
+
     def to_dict(self):
-        """Convert Pizza instance to dictionary"""
         return {
             'id': self.id,
             'name': self.name,
             'ingredients': self.ingredients
         }
-    
+
     @validates('name')
-    def validate_name(self, key, name):
-        if not name or len(name.strip()) == 0:
+    def validate_name(self, key, value):
+        if not value or not value.strip():
             raise ValueError("Name cannot be empty")
-        return name.strip()
-    
+        return value.strip()
+
     @validates('ingredients')
-    def validate_ingredients(self, key, ingredients):
-        if not ingredients or len(ingredients.strip()) == 0:
+    def validate_ingredients(self, key, value):
+        if not value or not value.strip():
             raise ValueError("Ingredients cannot be empty")
-        return ingredients.strip()
-    
+        return value.strip()
+
     def __repr__(self):
-        return f'<Pizza {self.name}>'
+        return f"<Pizza {self.name}>"
