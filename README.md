@@ -37,31 +37,23 @@ A RESTful API built with Flask, SQLAlchemy, and Flask-Migrate to manage pizzas, 
     └── seed.py
 
 
----
 
 ##  Setup Instructions
 
 ### 1. Clone the repo and navigate into it
 
-```bash
 git clone https://github.com/your-username/pizza_api.git
 cd pizza_api
 
-### 2. Create and activate your virtual environment (using Pipenv)
+### 2.Create and activate your virtual environment (using Pipenv)
 pipenv shell
 pipenv install
 
-3. Set up the PostgreSQL database and apply migrations
+### 3. Set up the PostgreSQL database and apply migrations
 a) Create the PostgreSQL database and user (if not done yet)
 Open terminal and run:
-
-bash
-Copy code
 sudo -u postgres psql
 Inside the psql shell:
-
-sql
-Copy code
 CREATE DATABASE pizza_api_db;
 CREATE USER pizza_user WITH PASSWORD 'your_password';
 GRANT ALL PRIVILEGES ON DATABASE pizza_api_db TO pizza_user;
@@ -69,24 +61,15 @@ GRANT ALL PRIVILEGES ON DATABASE pizza_api_db TO pizza_user;
 Replace pizza_user and 'your_password' with your actual PostgreSQL username and password.
 
 b) Update your config.py with your database URI
-python
-Copy code
 SQLALCHEMY_DATABASE_URI = 'postgresql://pizza_user:your_password@localhost:5432/pizza_api_db'
 (Use environment variables if preferred for security.)
-
 c) Run database migrations
-bash
-Copy code
 flask db upgrade
-4. Seed the database with initial data
-bash
-Copy code
+## 4. Seed the database with initial data
 python -m server.seed
-5. Run the Flask server
-bash
-Copy code
+## 5. Run the Flask server
 flask run
-📬 API Endpoints Overview
+## API Endpoints Overview
 Restaurants
 GET /restaurants - List all restaurants
 
@@ -108,10 +91,10 @@ Copy code
   "pizza_id": 2,
   "price": 12
 }
-🧪 Testing
+ Testing
 Use the included Postman collection challenge-1-pizzas.postman_collection.json in the server/ folder to test the API endpoints.
 
-🛠 Tech Stack
+## Tech Stack
 Python 3.x
 
 Flask
