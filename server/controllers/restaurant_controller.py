@@ -4,7 +4,7 @@ from server.database import db
 
 restaurant_bp = Blueprint('restaurants', __name__, url_prefix='/restaurants')
 
-@restaurant_bp.route('', methods=['GET'])
+@restaurant_bp.route('/', methods=['GET'])
 def get_restaurants():
     """GET /restaurants - Retrieve all restaurants"""
     try:
@@ -23,7 +23,7 @@ def get_restaurant(id):
 
 @restaurant_bp.route('/<int:id>', methods=['DELETE'])
 def delete_restaurant(id):
-    """DELETE /restaurants/<id> - Delete a restaurant"""
+    """DELETE /restaurants/<id> - Delete a restaurant and its associations"""
     restaurant = Restaurant.query.get(id)
     if not restaurant:
         return jsonify({"error": "Restaurant not found"}), 404

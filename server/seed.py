@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from server.app import create_app, db
 from server.models.restaurant import Restaurant
 from server.models.pizza import Pizza
@@ -11,13 +9,13 @@ def seed_data():
     app = create_app()
 
     with app.app_context():
-        # Clear existing data
+    
         print("Clearing existing data...")
         RestaurantPizza.query.delete()
         Restaurant.query.delete()
         Pizza.query.delete()
         
-        # Create restaurants
+        
         print("Creating restaurants...")
         restaurants = [
             Restaurant(
@@ -37,7 +35,7 @@ def seed_data():
         for restaurant in restaurants:
             db.session.add(restaurant)
         
-        # Create pizzas
+        
         print("Creating pizzas...")
         pizzas = [
             Pizza(
@@ -65,10 +63,10 @@ def seed_data():
         for pizza in pizzas:
             db.session.add(pizza)
         
-        # Commit restaurants and pizzas first
+        
         db.session.commit()
         
-        # Create restaurant-pizza associations
+        
         print("Creating restaurant-pizza associations...")
         restaurant_pizzas = [
             RestaurantPizza(price=10, restaurant_id=1, pizza_id=1),
