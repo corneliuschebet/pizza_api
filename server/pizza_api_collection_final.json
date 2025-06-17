@@ -1,0 +1,89 @@
+{
+  "info": {
+    "_postman_id": "12345678-1234-1234-1234-123456789abc",
+    "name": "Pizza Restaurant API Challenge",
+    "description": "Collection for testing the Pizza Restaurant API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Restaurants",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/restaurants"
+        }
+      }
+    },
+    {
+      "name": "Get Restaurant by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/restaurants/1"
+        }
+      }
+    },
+    {
+      "name": "Delete Restaurant",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/restaurants/1"
+        }
+      }
+    },
+    {
+      "name": "Get All Pizzas",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/pizzas"
+        }
+      }
+    },
+    {
+      "name": "Create Restaurant Pizza",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/restaurant_pizzas"
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 5,\n  \"pizza_id\": 1,\n  \"restaurant_id\": 3\n}"
+        },
+        "description": "Creates a new RestaurantPizza"
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "200 OK",
+          "code": 200,
+          "body": "{\n  \"id\": 4,\n  \"price\": 5,\n  \"pizza_id\": 1,\n  \"restaurant_id\": 3,\n  \"pizza\": {\n    \"id\": 1,\n    \"name\": \"Emma\",\n    \"ingredients\": \"Dough, Tomato Sauce, Cheese\"\n  },\n  \"restaurant\": {\n    \"id\": 3,\n    \"name\": \"Kiki's Pizza\",\n    \"address\": \"address3\"\n  }\n}"
+        },
+        {
+          "name": "Error - Invalid Price",
+          "originalRequest": {},
+          "status": "400 Bad Request",
+          "code": 400,
+          "body": "{\n  \"errors\": [\n    \"Price must be between 1 and 30\"\n  ]\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}
